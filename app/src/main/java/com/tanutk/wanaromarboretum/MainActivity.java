@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener  {
 
     private List<TitleModel> titleModelList;
 
@@ -98,6 +99,19 @@ public class MainActivity extends AppCompatActivity {
         String uri = String.format(Locale.ENGLISH, "https://goo.gl/maps/48HVcCy2ADL2");
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         startActivity(intent);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        String value = String.valueOf(position);
+        if (value.equalsIgnoreCase("2")) {
+            Intent i = new Intent(getApplicationContext(), QuizActivity.class);
+            //i.putExtra("index", value);
+            startActivity(i);
+        }
+
+
     }
 
     public class TitleAdapter extends ArrayAdapter {
